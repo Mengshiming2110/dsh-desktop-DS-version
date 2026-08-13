@@ -1,4 +1,9 @@
-# 安装包体积超过 GitHub 100MB 限制，不进 git 仓库；
-# 发布到远程时作为 GitHub Release 附件上传（见 docs/BUILD.md）
+# 安装包超 100MB，不进 git（远程走 Release 附件）
 releases/*.exe
 releases/SHA256SUMS.txt
+
+# 构建产物与本地环境
+node_modules/
+dist/
+runtime/
+*.log

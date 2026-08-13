@@ -37,6 +37,15 @@
 
 > 可选：装 [PowerShell 7](https://github.com/PowerShell/PowerShell/releases) 后聊天里才能用 shell 工具。
 
+## 在新机器上继续开发这个 GUI
+
+1. 装 **Node.js 18+**
+2. `git clone git@github.com:Mengshiming2110/dsh-desktop-DS-version.git`
+3. `npm install` → `powershell -File scripts/setup-runtime.ps1`（一键生成内置运行时）
+4. `npm start` 开发运行，`npm run dist` 重新打包
+
+详见 `docs/BUILD.md`。
+
 ## 数据位置
 
 - 会话/凭据/设置/Design 草稿：`%APPDATA%\DSH Desktop\dsh-home\`

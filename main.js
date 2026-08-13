@@ -291,15 +291,26 @@ async function main() {
       }
     }
   } else {
-    dshHome = path.join(os.homedir(), '.dsh');
+    // 开发模式：优先用系统 ~/.dsh；新机器没有时回退到仓库本地 runtime/
+    const sysHome = path.join(os.homedir(), '.dsh');
+    const sysBin = path.join(sysHome, 'profiles', 'node_modules', '@deepseek-ai', 'dsh', 'lib', 'bin.js');
+    if (fs.existsSync(sysBin)) {
+      dshHome = sysHome;
+    } else {
+      dshHome = userDshHome();
+      const srcHome = path.join(bundledRuntime(), 'dsh-home');
+      if (fs.existsSync(srcHome)) ensureRuntimeLayout(dshHome, srcHome);
+    }
   }
   console.log('[dsh-desktop] DSH_HOME =', dshHome);
 
-  // 运行 dsh 用内置真实树里的 bin（heal 机制以它为锚生成符号链接农场）
+  // 运行 dsh 用内置真实树里的 bin（heal 机制以它为锚生成符号链接农场）；
+  // 开发模式有 ~/.dsh 时沿用其符号链接，否则用仓库本地 runtime/
   const bundledAppNm = path.join(bundledRuntime(), 'dsh-app', 'node_modules');
-  const binPath = app.isPackaged
+  const sysBinPath = path.join(dshHome, 'profiles', 'node_modules', '@deepseek-ai', 'dsh', 'lib', 'bin.js');
+  const binPath = (app.isPackaged || !fs.existsSync(sysBinPath))
     ? path.join(bundledAppNm, '@deepseek-ai', 'dsh', 'lib', 'bin.js')
-    : path.join(dshHome, 'profiles', 'node_modules', '@deepseek-ai', 'dsh', 'lib', 'bin.js');
+    : sysBinPath;
   if (!fs.existsSync(binPath)) {
     dialog.showErrorBox('DSH Desktop', '未找到 dsh CLI：\n' + binPath + '\n（打包版请确认 resources/runtime 完整；开发版请先运行 npx --yes @deepseek-ai/dsh）');
     app.quit();

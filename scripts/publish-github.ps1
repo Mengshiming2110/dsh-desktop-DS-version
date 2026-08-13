@@ -1,4 +1,4 @@
-# publish-github.ps1 — 一键发布 DSH Desktop v0.2.1 到 GitHub（DSH Agent 版本）
+﻿# publish-github.ps1 — 一键发布 DSH Desktop v0.2.1 到 GitHub（DSH Agent 版本）
 # 用法：powershell -ExecutionPolicy Bypass -File scripts/publish-github.ps1
 # 前置：首次需 gh auth login
 $ErrorActionPreference = 'Stop'
