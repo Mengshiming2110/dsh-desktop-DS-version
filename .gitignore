@@ -1,0 +1,4 @@
+# 安装包体积超过 GitHub 100MB 限制，不进 git 仓库；
+# 发布到远程时作为 GitHub Release 附件上传（见 docs/BUILD.md）
+releases/*.exe
+releases/SHA256SUMS.txt
