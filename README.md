@@ -1,5 +1,8 @@
 # DSH Desktop
 
+**GitHub 仓库**：https://github.com/Mengshiming2110/dsh-desktop-DS-version  
+**Release 下载**：https://github.com/Mengshiming2110/dsh-desktop-DS-version/releases/tag/v0.2.1
+
 > ⭐ **版本备注（重要）**：本仓库发布的是 **DeepSeek Harness（DSH）Agent 构建的版本**
 > （2026-08-13，v0.2.1），由 DSH Agent 独立完成：托盘、内置 Node + DSH 运行时、
 > 首启自举、NSIS/便携版打包。与同期其他工具（如 Codex）并行开发的版本无关，
